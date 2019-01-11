@@ -1,0 +1,17 @@
+{% extends "lenotes/base.html" %} {% load bootstrap3 %} {% block header %}
+<h2>Send a new message:</h2>
+{% endblock header %} {% block content %}
+
+<form action="{% url 'users:send_message' %}" method="POST" class="form">{% csrf_token %}
+
+    <div class="form-group">
+        <label for="receiver_id">Receiver ID</label>
+        <input type="text" class="form-control" name="receiver_id">
+
+        <label for="content">Content</label>
+        <input type="text" class="form-control" name="content">
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
+{% endblock content %}

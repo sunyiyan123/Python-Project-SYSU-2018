@@ -1,0 +1,17 @@
+{% load widget_tweaks %} {% for field in info_form %}
+
+<div class="form-group">
+    <span>
+		{{ field.label }}
+	</span> {{ field | add_class:"form-control"}}
+    <p class="error-message text-danger">
+        {% for error in field.errors %} {{ error }} {% endfor %}
+    </p>
+</div>
+
+{% endfor %} {{ info_form.media }}
+
+<div class="form-group">
+    <span>Profile Photo(Only support english filename)</span>
+    <input type="file" name="profile" class="form-control" />
+</div>

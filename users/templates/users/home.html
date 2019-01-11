@@ -1,0 +1,77 @@
+{% extends "lenotes/base.html" %} {% block header %} {% load static %}
+<html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homestyle.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="banner-body">
+        <div class="container">
+            <div style='width: 800px;height:100px;'>
+                <div style="margin:0 0 0 290px; float: left;">
+                    <img class="img-circle" style="width:150px;height:150px;overflow:hidden;" src="/media/{{userinfo.profile}}" alt="">
+                </div>
+                <div style="float: right;" class="top-nav">
+                    <nav class="navbar navbar-default1">
+                        <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                            <nav class="stroke">
+                                <ul class="nav navbar-nav1">
+                                    <li>
+                                        <div style="float:left; font-size: 30px; font-family: 'Open Sans'">{{userinfo.name}}</div>
+                                        <div style="padding: 20px;font-size: 10px;float:left; font-family: 'Open Sans'">{{userinfo.gender}}</div>
+                                    </li>
+                                    <br/>
+                                    <li>
+                                        <div class='email_info'>{{userinfo.email}}</div>
+                                    </li>
+                                    <br/>
+                                    <li>
+                                        <div class='user_info'>{{userinfo.intro}}</div>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div style='margin:0 auto;'>
+                <br/>
+                <br/>
+                <br/>
+                <div class="line_divide_group"></div>
+                <br/>
+                <br/>
+                <br/>
+
+                <div class="msg-text-bottom">
+                    {% for group in groups %}
+                    <div class="msg-text-bottom-left" style="width: 280px; height: 320px;  float: left;">
+                        <figure class="effect-winston">
+                            <a href="{% url 'lenotes:group' group.id %} "><img src="/media/{{group.profile}}" alt=" " class="img-responsive" />
+                            </a>
+                        </figure>
+                        <h3><a href="{% url 'lenotes:group' group.id %} ">{{ group.name }}</a></h3>
+                        <p class='my_content'>{{ group.intro }}</p>
+                        <br/>
+                    </div>
+                    {% endfor %}
+                    <div class="clearfix"> </div>
+                </div>
+                <br/>
+                <br/>
+                <h4><a href="{% url 'lenotes:new_group' %} " class="btn btn-default creat_group_button">Create new group</a></h4>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}
